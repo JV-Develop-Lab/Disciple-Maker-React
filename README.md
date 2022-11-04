@@ -7,3 +7,7 @@
 - react 18
 - recoil
 - tailwind css
+
+### 2022년 11월 04일
+  - 오타 수정
+  - 2과 요청
