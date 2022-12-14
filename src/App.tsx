@@ -1,9 +1,16 @@
-import React from 'react';
-import Chapter1 from "./pages/Chapter1";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages";
+import IntroducePage from "./pages/Introduce/IntroducePage";
 
 function App() {
   return (
-    <Chapter1></Chapter1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/chapter1" element={<IntroducePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

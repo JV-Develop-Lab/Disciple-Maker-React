@@ -1,7 +1,6 @@
-import {atom} from "recoil";
-import {Chapter1PageList} from "./values";
+import { atom } from "recoil";
 
 export const Chapter1PageState = atom<number>({
-    key: "chapter1PageState",
-    default: 0
-})
+  key: "chapter1PageState",
+  default: 0,
+});
