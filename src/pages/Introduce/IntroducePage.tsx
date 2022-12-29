@@ -1,6 +1,7 @@
 import React from "react";
 import ChapterLayout from "../../layouts/ChapterLayout";
 import content from "../../data/contents.json";
+import { Link } from "react-router-dom";
 
 function IntroducePage() {
   const introduction = content.pages.introduction;
@@ -25,8 +26,8 @@ function IntroducePage() {
       <div className={"text-xl font-semibold mb-4"}>
         {introduction.conclusion}
       </div>
-      <button
-        type="button"
+      <Link
+        to="/book/body"
         className={
           "w-full h-[40px] text-xl font-semibold text-White bg-amber-300 border rounded-2xl"
         }
@@ -35,7 +36,7 @@ function IntroducePage() {
         }}
       >
         다음 장으로 넘어가기
-      </button>
+      </Link>
     </ChapterLayout>
   );
 }

@@ -1,11 +1,20 @@
 import ChapterLayout from "../../layouts/ChapterLayout";
 import content from "../../data/contents.json";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 export default function BodyPage() {
-  const [problemNumber, setProblemNumber] = useState(1);
+  const [problemNumber, setProblemNumber] = useState(0);
 
   const body = content.pages.body;
+
+  const answerList = useMemo(() => {
+    const sectionContent = body[problemNumber].section[0].sectionContent;
+    return sectionContent.map((content) => {
+      return content.answer;
+    });
+  }, [problemNumber]);
+
+  console.log(answerList);
 
   const [value, setValue] = useState<string>("");
   const [value2, setValue2] = useState<string>("");
@@ -17,35 +26,34 @@ export default function BodyPage() {
   const typingText2 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue2(event.target.value);
   };
-  //TODO: 하이
 
   return (
     <ChapterLayout chapterTitle={content.pages.introduction.chapterTitle}>
       <div className={"text-xl font-bold mb-2"}>
-        {body[0].section[problemNumber].sectionTitle}
+        {body[problemNumber].section[0].sectionTitle}
       </div>
       <div className={"mb-2 font-semibold"}>
-        <div>{body[0].section[problemNumber].sectionContent[0].question}</div>
+        <div>{body[problemNumber].section[0].sectionContent[0].question}</div>
       </div>
       <div className={"mb-4"}>
         <div className={"bg-red-200 p-2 mb-2"}>
           <div>
             {
-              body[0].section[problemNumber].sectionContent[0].sectionWord
+              body[problemNumber].section[0].sectionContent[0].sectionWord
                 .location
             }
           </div>
           <ul>
-            {body[0].section[
+            {body[
               problemNumber
-            ].sectionContent[0].sectionWord.word.map((word) => {
+            ].section[0].sectionContent[0].sectionWord.word.map((word) => {
               // eslint-disable-next-line react/jsx-key
               return <li>{word}</li>;
             })}
           </ul>
         </div>
         <div>
-          {body[0].section[problemNumber].sectionContent[0].sectionContent}
+          {body[problemNumber].section[0].sectionContent[0].sectionContent}
         </div>
       </div>
       <div className={"mb-2 font-semibold"}>
@@ -81,7 +89,8 @@ export default function BodyPage() {
           "w-full h-[40px] text-xl font-semibold text-White bg-amber-300 border rounded-2xl"
         }
         onClick={() => {
-          if (value2.includes("하나님") && value2.includes("관계")) {
+          if (value2.includes("하나님")) {
+            setProblemNumber((prevState) => prevState + 1);
             window.scrollTo(0, 0);
           } else {
             alert("질문에 답을 작성해주세요.");
