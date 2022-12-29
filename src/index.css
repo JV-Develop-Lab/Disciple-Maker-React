@@ -3,11 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-    html{
-        font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-        height: 100%;
-        word-break: keep-all;
-        font-size: 16px;
-    }
+@layer base {
+  html {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+      Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+      "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol", sans-serif;
+    height: 100%;
+    word-break: keep-all;
+    font-size: 16px;
+  }
 }
