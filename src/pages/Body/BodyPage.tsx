@@ -1,14 +1,10 @@
 import ChapterLayout from "../../layouts/ChapterLayout";
 import content from "../../data/contents.json";
-import { useParams } from "react-router-dom";
 import React, { useState } from "react";
 
 export default function BodyPage() {
-  const { problemNumber } = useParams();
+  const [problemNumber, setProblemNumber] = useState(1);
 
-  if (!problemNumber) {
-    return <div>Error</div>;
-  }
   const body = content.pages.body;
 
   const [value, setValue] = useState<string>("");
@@ -21,6 +17,7 @@ export default function BodyPage() {
   const typingText2 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue2(event.target.value);
   };
+  //TODO: 하이
 
   return (
     <ChapterLayout chapterTitle={content.pages.introduction.chapterTitle}>
@@ -28,41 +25,27 @@ export default function BodyPage() {
         {body[0].section[problemNumber].sectionTitle}
       </div>
       <div className={"mb-2 font-semibold"}>
-        <div>사단의 유혹으로</div>
-        <div className={"flex"}>
-          <input
-            className={`w-[200px] h-[30px] border-b-2 mx-2`}
-            value={value}
-            onChange={typingText}
-          />
-          <div> 가</div>
-        </div>
-        <div>시작되었습니다.</div>
+        <div>{body[0].section[problemNumber].sectionContent[0].question}</div>
       </div>
       <div className={"mb-4"}>
         <div className={"bg-red-200 p-2 mb-2"}>
-          <div>창세기 3: 1~4</div>
           <div>
-            1 그런데 뱀은 여호와 하나님이 지으신 들짐승 중에 가장 간교하니라
-            뱀이 여자에게 물어 이르되 하나님이 참으로 너희에게 동산 모든 나무의
-            열매를 먹지 말라 하시더냐
+            {
+              body[0].section[problemNumber].sectionContent[0].sectionWord
+                .location
+            }
           </div>
-          <div>
-            2 여자가 뱀에게 말하되 동산 나무의 열매를 우리가 먹을 수 있으나
-          </div>
-          <div>
-            3 동산 중앙에 있는 나무의 열매는 하나님의 말씀에 너희는 먹지도 말고
-            만지지도 말라 너희가 죽을까 하노라 하셨느니라
-          </div>
-          <div>4 뱀이 여자에게 이르되 너희가 결코 죽지 아니하 리라</div>
+          <ul>
+            {body[0].section[
+              problemNumber
+            ].sectionContent[0].sectionWord.word.map((word) => {
+              // eslint-disable-next-line react/jsx-key
+              return <li>{word}</li>;
+            })}
+          </ul>
         </div>
         <div>
-          하나님은 에덴동산을 만드시고 모든 동물과 식물을 사람이 다스릴 수
-          있도록 하셨습니다. 다만 동산 중앙에 있는 선악과만은 절대 먹지 말라고
-          하셨습니다. 사단은 하와를 유혹하여 선악과를 따먹게 하고 하나님의
-          명령을 지키지 못하게 만들었습니다. 결국 하나님께 불순종하였던 아담과
-          하와는 하나님과 함께하던 에덴동산에서 쫓겨나게 되었고 고통스런 죄의
-          문제가 시작되었습니다.
+          {body[0].section[problemNumber].sectionContent[0].sectionContent}
         </div>
       </div>
       <div className={"mb-2 font-semibold"}>
